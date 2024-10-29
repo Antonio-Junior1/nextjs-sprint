@@ -7,17 +7,14 @@ export default function Home() {
         <title>Serviço Automotivo</title>
       </Head>
 
-      {/* Header */}
       <header className="flex justify-center w-full py-5 bg-white">
         <a href="/">
           <img src="/IMAGES/PORTOLOGO.PNG" alt="Logo Porto" className="w-64" />
         </a>
       </header>
 
-      {/* Main Content */}
-      <main className="flex flex-col items-center bg-blue-500 w-full min-h-screen">
+      <main className="flex flex-col items-center bg-[#00A1FC] w-full min-h-screen">
         <div className="flex flex-col items-center justify-between text-white py-48 px-28 w-full">
-          {/* Hero Section */}
           <section className="flex flex-col items-center text-center py-10">
             <h1 className="text-4xl font-bold">Serviços Mecânicos</h1>
             <p className="text-xl mt-4">
@@ -25,16 +22,14 @@ export default function Home() {
             </p>
             <a
               href="/"
-              className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-blue-500 hover:text-white transition-colors duration-300 border-2"
+              className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-[#00A1FC] hover:text-white transition-colors duration-300 border-2"
             >
               Consultar Serviço
             </a>
           </section>
 
-          {/* Services Section */}
           <div className="flex flex-wrap justify-center gap-8 mt-10">
             {['Manutenção Preventiva', 'Reparação de Motores', 'Troca de Peças'].map((service, index) => {
-              // Seleciona a imagem correta para cada serviço
               let serviceImage = '';
 
               if (service === 'Manutenção Preventiva') {
@@ -51,7 +46,8 @@ export default function Home() {
                     src={serviceImage}
                     alt={service}
                     className="rounded-lg mb-4 hover:scale-110 transition-transform"
-                    style={{ width: '200px', height: '200px', objectFit: 'cover' }}/>
+                    style={{ width: '200px', height: '200px', objectFit: 'cover' }}
+                  />
                   <h3 className="text-2xl font-bold text-black">{service}</h3>
                   <p className="mt-2 text-center text-black">
                     {service === 'Manutenção Preventiva' && 'Garanta a durabilidade e o desempenho do seu veículo com nossos serviços de manutenção preventiva.'}
@@ -65,7 +61,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="bg-black text-white py-5">
         <div className="flex flex-col items-center gap-12 max-w-4xl mx-auto py-5">
           <span className="text-2xl text-center">
@@ -74,13 +69,12 @@ export default function Home() {
           <span className="text-2xl text-center">
             Descubra seu problema sem sair de casa
           </span>
-          <a href="/Servico" className="px-6 py-3 bg-white text-black rounded-full">
+          <a href="/Servico" className="px-6 py-3 bg-white text-black rounded-full hover:bg-[#00A1FC] hover:text-white transition-colors duration-300">
             Conheça nosso serviço
           </a>
 
-          <div className="w-full border-t border-gray-800 my-5" />
+          <div className="w-full border-t border-gray-800 my-5 overflow-hidden" />
 
-          {/* Contact Section */}
           <div className="flex flex-col items-center mt-5">
             <h2 className="text-xl font-bold text-white">Fale Conosco</h2>
             <form className="flex flex-col w-full max-w-md mt-4">
@@ -90,13 +84,13 @@ export default function Home() {
               <input type="email" id="email" className="p-2 mb-3 border rounded-md text-black" placeholder="Seu E-mail" required />
               <label htmlFor="message" className="text-white mb-2">Mensagem:</label>
               <textarea id="message" className="p-2 mb-3 border rounded-md text-black" placeholder="Sua Mensagem" required />
-              <button type="submit" className="px-6 py-2 bg-blue-700 text-white rounded-md mt-4">
+              <button type="submit" className="px-6 py-2 bg-[#00A1FC] text-white rounded-md mt-4">
                 Enviar
               </button>
             </form>
           </div>
 
-          <div className="w-full border-t border-gray-800 my-5" />
+          <div className="w-full border-t border-gray-800 my-5 overflow-hidden" />
         </div>
       </footer>
     </>
