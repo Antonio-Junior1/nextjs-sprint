@@ -1,4 +1,4 @@
-"use client"; // Diretiva para um componente cliente
+"use client"; 
 
 import { useState } from 'react';
 
@@ -18,7 +18,7 @@ export default function Page() {
     setIsRegistering(!isRegistering);
   };
 
-  // Dados dos desenvolvedores com caminhos para o diretório público
+  
   const developers = [
     {
       name: 'Antonio Junior',
@@ -114,8 +114,7 @@ export default function Page() {
               key={developer.name}
               className="flex flex-col items-center bg-white p-12 rounded-lg shadow-lg w-80"
             >
-              <img src={developer.image} alt={`Foto de ${developer.name}`}className="w-full h-52 object-cover rounded-t-lg"
-              />
+              <img src={developer.image} alt={`Foto de ${developer.name}`}className="w-full h-52 object-cover rounded-t-lg"/>
               <h3 className=" text-black text-xl font-bold mt-3">{developer.name}</h3>
               <p className="text-gray-600">RM: {developer.rm}</p>
               <p className="text-gray-600">{developer.email}</p>
