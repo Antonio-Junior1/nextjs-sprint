@@ -104,47 +104,9 @@ export default function Page() {
         </section>
       </main>
 
-      <footer className="bg-black text-white py-5 w-full">
-        <div className="w-full border-t border-gray-800"></div>
-        <div className="flex flex-col items-center max-w-4xl mx-auto py-5">
-          <h2 className="text-xl font-bold text-white">Fale Conosco</h2>
-          <form className="flex flex-col w-full max-w-md mt-4">
-            <label htmlFor="name" className="text-white mb-2">Nome:</label>
-            <input 
-              type="text" 
-              id="name" 
-              className="p-2 mb-3 border rounded-md text-black" 
-              placeholder="Seu Nome" 
-              required 
-            />
-            <label htmlFor="email" className="text-white mb-2">E-mail:</label>
-            <input 
-              type="email" 
-              id="email" 
-              className="p-2 mb-3 border rounded-md text-black" 
-              placeholder="Seu E-mail" 
-              required 
-            />
-            <label htmlFor="message" className="text-white mb-2">Mensagem:</label>
-            <textarea 
-              id="message" 
-              className="p-2 mb-3 border rounded-md text-black" 
-              placeholder="Sua Mensagem" 
-              required 
-            />
-            <button 
-              type="submit" 
-              className="px-6 py-2 bg-[#00A1FC] text-white rounded-md mt-4"
-            >
-              Enviar
-            </button>
-          </form>
-        </div>
-        <div className="w-full border-t border-gray-800"></div>
-      </footer>
 
       
-      <div className="bg-black max-w-6xl mx-auto py-10 px-5">
+      <div className="mt-10 bg-black max-w-6xl mx-auto py-10 px-5">
         <h2 className="  text-3xl font-bold mb-5 text-center">Desenvolvedores</h2>
         <div className="flex flex-wrap justify-center gap-6">
           {developers.map((developer) => (

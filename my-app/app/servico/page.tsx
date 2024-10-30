@@ -22,7 +22,7 @@ export default function Home() {
             </p>
             <a
               href="/"
-              className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-[#00A1FC] hover:text-white transition-colors duration-300 border-2"
+              className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-opacity-90 hover:text-black transition-colors duration-300 border-2"
             >
               Consultar Serviço
             </a>
@@ -60,9 +60,10 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <footer className="bg-black text-white py-5">
-        <div className="flex flex-col items-center gap-12 max-w-4xl mx-auto py-5">
+      
+      <footer className=" bg-black text-white py-5">
+        
+        <div className="flex flex-col items-center gap-12  mx-auto py-5">
           <span className="text-2xl text-center">
             Ágil, prático e fácil
           </span>
@@ -75,7 +76,7 @@ export default function Home() {
 
           <div className="w-full border-t border-gray-800 my-5 overflow-hidden" />
 
-          <div className="flex flex-col items-center mt-5">
+          <div className="w-full flex flex-col items-center mt-5">
             <h2 className="text-xl font-bold text-white">Fale Conosco</h2>
             <form className="flex flex-col w-full max-w-md mt-4">
               <label htmlFor="name" className="text-white mb-2">Nome:</label>
@@ -90,8 +91,9 @@ export default function Home() {
             </form>
           </div>
 
-          <div className="w-full border-t border-gray-800 my-5 overflow-hidden" />
+          
         </div>
+        
       </footer>
     </>
   );
