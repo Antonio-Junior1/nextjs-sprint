@@ -1,3 +1,5 @@
+import { BotServico } from "./botao-servico";
+
 export function MainHome (){
     return (
         <main className="bg-[#00A1FC] w-full h-full flex flex-col justify-center items-center">
@@ -19,11 +21,7 @@ export function MainHome (){
               <p className="ml-2">90% de satisfação pelo serviço oferecido</p>
             </span>
             <br />
-            <a href="/servico">
-              <button className="text-xl font-light py-2 w-[253px] h-[56px] flex items-center justify-center rounded-full bg-white cursor-pointer transition-colors duration-300 hover:bg-gray-300 text-black">
-                Conheça nosso serviço
-              </button>
-            </a>
+            <BotServico/>
           </section>
           <div className="w-25% h-25% p-0 mt-120px">
             <img src="/images/Portomain.png" alt="Porto Main " />

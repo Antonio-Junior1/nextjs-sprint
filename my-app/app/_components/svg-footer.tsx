@@ -1,3 +1,5 @@
+import { BotServico } from "./botao-servico";
+
 export function SvgFooter (){
     return (
         <footer className="bg-black w-full min-h-[350px] py-5 box-border">
@@ -9,11 +11,8 @@ export function SvgFooter (){
         <span className="text-[28px] text-center max-w-[600px] my-2 leading-snug">
           Descubra seu problema sem sair de casa
         </span>
-        <a href="/servico">
-          <button className="font-medium w-[260px] h-14 rounded-full bg-white text-black flex items-center justify-center my-5 transition-colors duration-300 hover:bg-gray-300">
-            Conheça nosso serviço
-          </button>
-        </a>
+        <BotServico/>
+        <br/>
       </div>
 
       
