@@ -12,7 +12,7 @@ export function MainHome() {
               <circle cx="12.0859" cy="12" r="9" stroke="#7eff79" strokeWidth="2" />
               <path d="M8.08594 12L11.0859 15L16.0859 9" stroke="#9fff79" strokeWidth="2" />
             </svg>
-            <p className="ml-2">Àgil prático e fácil</p>
+            <p className="ml-2">Àgil, prático e fácil</p>
           </span>
           <span className="text-sm flex items-center text-black mt-3">
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
