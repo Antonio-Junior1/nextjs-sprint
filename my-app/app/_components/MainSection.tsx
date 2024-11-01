@@ -1,6 +1,6 @@
 "use client";
 
-import { Span } from "next/dist/trace";
+
 import Link from "next/link";
 
 interface ServiceCardProps {
