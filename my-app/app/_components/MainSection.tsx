@@ -1,5 +1,8 @@
 "use client";
 
+import { Span } from "next/dist/trace";
+import Link from "next/link";
+
 interface ServiceCardProps {
   service: string;
   serviceImage: string;
@@ -48,12 +51,11 @@ export default function MainSection() {
           <p className="text-xl mt-4">
             Confiabilidade, qualidade e agilidade em nossos serviços de manutenção e reparação de veículos, tudo através da nossa IA.
           </p>
-          <a
-            href="/"
-            className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-opacity-90 hover:text-black transition-colors duration-300 border-2"
-          >
-            Consultar Serviço
-          </a>
+          <Link href="/"
+            className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-opacity-90 hover:text-black transition-colors duration-300 border-2">
+            Conheça nosso serviço
+          </Link>
+
         </section>
 
         <div className="flex flex-wrap justify-center gap-8 mt-10">
