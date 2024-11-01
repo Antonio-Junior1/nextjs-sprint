@@ -8,7 +8,7 @@ export  default function HeaderBasic (){
         </Head>
         <header className="flex justify-center w-full py-5 bg-white">
           <Link href="/">
-            <img src="/IMAGES/PORTOLOGO.PNG" alt="Logo Porto" className="w-64" />
+            <img src="/IMAGES/PortoLogo.PNG" alt="Logo Porto" className="w-64" />
           </Link>
         </header>
     </> 

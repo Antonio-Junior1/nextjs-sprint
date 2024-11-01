@@ -38,7 +38,7 @@ export default function MainSection() {
     },
     {
       name: 'Troca de Peças',
-      image: '/IMAGES/Trocadepc.png',
+      image: '/IMAGES/TrocaDepc.png',
       description: 'Oferecemos a troca de peças originais e de qualidade para garantir a segurança e o desempenho do seu veículo.',
     },
   ];
