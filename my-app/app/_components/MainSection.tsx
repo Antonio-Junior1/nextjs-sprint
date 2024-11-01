@@ -1,6 +1,5 @@
 "use client";
-
-
+import Image from "next/image";
 import Link from "next/link";
 
 interface ServiceCardProps {
@@ -12,11 +11,13 @@ interface ServiceCardProps {
 export function ServiceCard({ service, serviceImage, description }: ServiceCardProps) {
   return (
     <div className="bg-white flex flex-col items-center p-5 border-2 rounded-lg w-1/3">
-      <img
+      <Image
         src={serviceImage}
         alt={service}
+        width={200} // Defina a largura da imagem
+        height={200} // Defina a altura da imagem
         className="rounded-lg mb-4 hover:scale-110 transition-transform"
-        style={{ width: '200px', height: '200px', objectFit: 'cover' }}
+        style={{ objectFit: 'cover' }}
       />
       <h3 className="text-2xl font-bold text-black">{service}</h3>
       <p className="mt-2 text-center text-black">{description}</p>
@@ -55,7 +56,6 @@ export default function MainSection() {
             className="mt-8 px-6 py-3 bg-white text-black rounded-full hover:bg-opacity-90 hover:text-black transition-colors duration-300 border-2">
             Conheça nosso serviço
           </Link>
-
         </section>
 
         <div className="flex flex-wrap justify-center gap-8 mt-10">

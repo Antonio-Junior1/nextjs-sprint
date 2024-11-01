@@ -1,4 +1,5 @@
-import { HeaderHome } from "../_components/header-home";
+import HeaderBasic from "../_components/header-basic";
+
 import MainChat from "../_components/Mainchat";
 import { SvgFooter } from "../_components/svg-footer";
 import Script from "next/script";
@@ -6,7 +7,7 @@ import Script from "next/script";
 export default function ChatHome() {
   return (
     <div className="w-full min-h-screen flex flex-col bg-[#00A1FC]">
-      <HeaderHome />
+      <HeaderBasic />
       <MainChat/>
       <SvgFooter />
       <Script id="watson-chat" strategy="afterInteractive">
