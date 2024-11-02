@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function Chat() {
   const [sintoma, setSintoma] = useState('');
   const [previsao, setPrevisao] = useState('');
-  const [erro, setErro] = useState('');  // Certifique-se de que 'erro' está aqui
+  const [erro, setErro] = useState('');
 
   const enviarSintoma = async () => {
     try {
@@ -23,9 +23,13 @@ export default function Chat() {
 
       const data = await response.json();
       setPrevisao(data.previsao);
-      setErro('');  // Limpa qualquer erro anterior
+      setErro('');
     } catch (error) {
-      setErro('Erro ao obter previsão. Verifique se o servidor está ativo.');
+      if (error instanceof Error) {
+        setErro(`Erro ao obter previsão. Verifique se o servidor está ativo. Detalhes: ${error.message}`);
+      } else {
+        setErro('Erro ao obter previsão. Verifique se o servidor está ativo.');
+      }
       setPrevisao('');
     }
   };
@@ -50,7 +54,7 @@ export default function Chat() {
           <p>{previsao}</p>
         </div>
       )}
-      {erro && (  // Verifica se há um erro para exibir
+      {erro && (
         <div style={{ color: 'red', marginTop: '20px' }}>
           <p>{erro}</p>
         </div>
