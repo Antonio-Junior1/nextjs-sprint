@@ -14,8 +14,8 @@ export function ServiceCard({ service, serviceImage, description }: ServiceCardP
       <Image
         src={serviceImage}
         alt={service}
-        width={200} // Defina a largura da imagem
-        height={200} // Defina a altura da imagem
+        width={200} 
+        height={200} 
         className="rounded-lg mb-4 hover:scale-110 transition-transform"
         style={{ objectFit: 'cover' }}
       />

@@ -8,7 +8,7 @@ export default function MainChat() {
         Clique no ícone de chat no canto inferior direito para começar a conversar.
       </p>
 
-      {/* Ajuste do span com animação personalizada */}
+      
       <div className="fixed bottom-20 top-[870px] right-[100px] flex items-center space-x-2 z-50 custom-bounce">
         <span className="bg-white text-[#00A1FC] px-4 py-2 rounded-full shadow-lg font-semibold">
           Clique aqui! 💬

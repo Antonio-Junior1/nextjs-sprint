@@ -13,8 +13,8 @@ export default function HeaderBasic() {
           <Image 
             src="/IMAGES/PortoLogo.png" 
             alt="Logo Porto" 
-            width={256} // Defina a largura da imagem, ajuste conforme necessário
-            height={64} // Defina a altura da imagem, ajuste conforme necessário
+            width={256} 
+            height={64} 
           />
         </Link>
       </header>

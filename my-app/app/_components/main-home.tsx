@@ -24,7 +24,7 @@ export function MainHome() {
           <br />
           <BotServico />
         </section>
-        <div className="relative w-[300px] h-[300px]"> {/* Define tamanho explícito para garantir visibilidade */}
+        <div className="relative w-[300px] h-[300px]"> 
           <Image
             src="/IMAGES/PortoMain.png"
             alt="Porto Main"
