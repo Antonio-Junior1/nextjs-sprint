@@ -9,7 +9,7 @@ export default function Chat() {
 
   const enviarSintoma = async () => {
     try {
-      const response = await fetch('https://api-ia-tde7.onrender.com/', { // URL atualizada
+      const response = await fetch('https://api-ia-tde7.onrender.com/predict', { // URL ajustada para rota específica
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,6 +25,7 @@ export default function Chat() {
       setPrevisao(data.previsao); // Verifique se "previsao" é o nome correto do campo na resposta da API
       setErro('');
     } catch (error) {
+      console.error('Erro:', error); // Log de erro detalhado
       if (error instanceof Error) {
         setErro(`Erro ao obter previsão. Verifique se o servidor está ativo. Detalhes: ${error.message}`);
       } else {
@@ -35,7 +36,7 @@ export default function Chat() {
   };
 
   return (
-    <div style={{ padding: '20px' }} >
+    <div style={{ padding: '20px' }}>
       <h2>Teste de IA para Previsão</h2>
       <input className='text-black'
         type="text"
