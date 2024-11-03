@@ -9,7 +9,7 @@ export default function Chat() {
 
   const enviarSintoma = async () => {
     try {
-      const response = await fetch('https://nextjs-sprint-yhab.vercel.app/chat', {
+      const response = await fetch('https://nextjs-sprint-d63r.vercel.app/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
