@@ -8,37 +8,51 @@ export default function Chat() {
   const [erro, setErro] = useState('');
 
   const enviarSintoma = async () => {
+    // Verifica se o campo Sintoma está vazio
+    if (!sintoma) {
+      setErro('Por favor, insira um sintoma.');
+      return;
+    }
+
     try {
-      const response = await fetch('https://api-ia-2-hl3a.onrender.com/prever', { // URL ajustada para rota específica
+      // Fazendo a requisição para o endpoint da API
+      const response = await fetch('https://api-ia-2-hl3a.onrender.com/prever', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ Sintoma: sintoma }), // Ajuste conforme o payload esperado pela API
+        body: JSON.stringify({ Sintoma: sintoma }), // Corpo da requisição com o sintoma
       });
 
+      // Verifica se a resposta é ok (status 200-299)
       if (!response.ok) {
-        throw new Error('Erro na requisição');
+        throw new Error('Erro na requisição: ' + response.statusText);
       }
 
+      // Converte a resposta em JSON
       const data = await response.json();
-      setPrevisao(data.previsao); // Verifique se "previsao" é o nome correto do campo na resposta da API
-      setErro('');
+      console.log(data); // Para ver a resposta no console
+
+      // Define a previsão recebida da API
+      setPrevisao(data.previsao);
+      setErro(''); // Reseta a mensagem de erro
     } catch (error) {
       console.error('Erro:', error); // Log de erro detalhado
       if (error instanceof Error) {
-        setErro(`Erro ao obter previsão. Verifique se o servidor está ativo. Detalhes: ${error.message}`);
+        // Define a mensagem de erro com detalhes
+        setErro(`Erro ao obter previsão. Detalhes: ${error.message}`);
       } else {
         setErro('Erro ao obter previsão. Verifique se o servidor está ativo.');
       }
-      setPrevisao('');
+      setPrevisao(''); // Reseta a previsão
     }
   };
 
   return (
     <div style={{ padding: '20px' }}>
       <h2>Teste de IA para Previsão</h2>
-      <input className='text-black'
+      <input
+        className='text-black'
         type="text"
         value={sintoma}
         onChange={(e) => setSintoma(e.target.value)}
