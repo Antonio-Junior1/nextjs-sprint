@@ -16,7 +16,7 @@ export default function Chat() {
 
     try {
       // Fazendo a requisição para o endpoint da API
-      const response = await fetch('https://api-ia-2-hl3a.onrender.com/prever', {
+      const response = await fetch('https://api-ia-3-xkjr.onrender.com/prever', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
