@@ -35,9 +35,9 @@ export default function Chat() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px' }} >
       <h2>Teste de IA para Previsão</h2>
-      <input
+      <input className='text-black'
         type="text"
         value={sintoma}
         onChange={(e) => setSintoma(e.target.value)}
