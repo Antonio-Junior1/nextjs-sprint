@@ -9,12 +9,12 @@ export default function Chat() {
 
   const enviarSintoma = async () => {
     try {
-      const response = await fetch('https://nextjs-sprint-d63r.vercel.app/chat', {
+      const response = await fetch('https://api-ia-tde7.onrender.com/', { // URL atualizada
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ Sintoma: sintoma }),
+        body: JSON.stringify({ Sintoma: sintoma }), // Ajuste conforme o payload esperado pela API
       });
 
       if (!response.ok) {
@@ -22,7 +22,7 @@ export default function Chat() {
       }
 
       const data = await response.json();
-      setPrevisao(data.previsao);
+      setPrevisao(data.previsao); // Verifique se "previsao" é o nome correto do campo na resposta da API
       setErro('');
     } catch (error) {
       if (error instanceof Error) {
