@@ -9,7 +9,7 @@ export default function Chat() {
 
   const enviarSintoma = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/prever', {
+      const response = await fetch('https://nextjs-sprint-yhab.vercel.app/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
