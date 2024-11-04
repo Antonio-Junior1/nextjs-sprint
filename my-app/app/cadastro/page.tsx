@@ -79,7 +79,7 @@ export default function Cadastro() {
           email: 'AntonioJunior@Gmail.com',
           github: 'https://github.com/Antonio-Junior1',
           instagram: 'https://www.instagram.com/jrz__7/',
-          image: '/images/Antonio.jpeg',
+          image: '/IMAGES/Antonio.jpeg',
         },
         {
           name: 'Carlos Eduardo',
@@ -87,7 +87,7 @@ export default function Cadastro() {
           email: 'CarlosEduardo@Gmail.com',
           github: 'https://github.com/CarlosCampos84',
           instagram: 'https://www.instagram.com/c4duzin_n/',
-          image: '/images/Cadu.jpeg',
+          image: '/IMAGES/Cadu.jpeg',
         },
         {
           name: 'Felipe Pizzinato',
@@ -95,7 +95,7 @@ export default function Cadastro() {
           email: 'FelipePizzinato@Gmail.com',
           github: 'https://github.com/felipepizzinato',
           instagram: 'https://www.instagram.com/_pizzinato/',
-          image: '/images/Felipe.jpeg',
+          image: '/iMAGES/Felipe.jpeg',
         },
       ];
 
