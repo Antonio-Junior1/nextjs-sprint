@@ -10,7 +10,7 @@ interface ServiceCardProps {
 
 export function ServiceCard({ service, serviceImage, description }: ServiceCardProps) {
   return (
-    <div className="bg-white flex flex-col items-center p-5 border-2 rounded-lg w-1/3">
+    <div className="bg-white flex flex-col items-center p-5 border-2 rounded-lg w-full sm:w-1/2 lg:w-1/3 max-w-xs shadow-lg">
       <Image
         src={serviceImage}
         alt={service}
@@ -19,8 +19,8 @@ export function ServiceCard({ service, serviceImage, description }: ServiceCardP
         className="rounded-lg mb-4 hover:scale-110 transition-transform"
         style={{ objectFit: 'cover' }}
       />
-      <h3 className="text-2xl font-bold text-black">{service}</h3>
-      <p className="mt-2 text-center text-black">{description}</p>
+      <h3 className="text-xl sm:text-2xl font-bold text-black">{service}</h3>
+      <p className="mt-2 text-center text-black text-sm sm:text-base">{description}</p>
     </div>
   );
 }
@@ -46,10 +46,10 @@ export default function MainSection() {
 
   return (
     <main className="flex flex-col items-center bg-[#00A1FC] w-full min-h-screen">
-      <div className="flex flex-col items-center justify-between text-white py-48 px-28 w-full">
+      <div className="flex flex-col items-center justify-between text-white py-24 px-4 md:px-16 lg:px-28 w-full">
         <section className="flex flex-col items-center text-center py-10">
-          <h1 className="text-4xl font-bold">Serviços Mecânicos</h1>
-          <p className="text-xl mt-4">
+          <h1 className="text-3xl md:text-4xl font-bold">Serviços Mecânicos</h1>
+          <p className="text-lg md:text-xl mt-4">
             Confiabilidade, qualidade e agilidade em nossos serviços de manutenção e reparação de veículos, tudo através da nossa IA.
           </p>
           <Link href="/chat"
@@ -58,7 +58,7 @@ export default function MainSection() {
           </Link>
         </section>
 
-        <div className="flex flex-wrap justify-center gap-8 mt-10">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
