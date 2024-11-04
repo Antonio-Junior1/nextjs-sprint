@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import HeaderBasic from '../_components/header-basic';
 import { SvgFooter } from '../_components/svg-footer';
+import DeveloperCard from '../_components/DeveloperCard';
 
 interface Usuario {
   usuario: string;
@@ -58,8 +59,35 @@ const Login = () => {
     }
   };
 
+
+  const developers = [
+    {
+      name: 'Antonio Junior',
+      rm: '554518',
+      email: 'AntonioJunior@Gmail.com',
+      github: 'https://github.com/Antonio-Junior1',
+      instagram: 'https://www.instagram.com/jrz__7/',
+      image: '/IMAGES/Antonio.jpeg',
+    },
+    {
+      name: 'Carlos Eduardo',
+      rm: '555223',
+      email: 'CarlosEduardo@Gmail.com',
+      github: 'https://github.com/CarlosCampos84',
+      instagram: 'https://www.instagram.com/c4duzin_n/',
+      image: '/IMAGES/Cadu.jpeg',
+    },
+    {
+      name: 'Felipe Pizzinato',
+      rm: '555141',
+      email: 'FelipePizzinato@Gmail.com',
+      github: 'https://github.com/felipepizzinato',
+      instagram: 'https://www.instagram.com/_pizzinato/',
+      image: '/IMAGES/Felipe.jpeg',
+    },
+  ];
   return (
-    <>
+    <div className='bg-black'>
     <HeaderBasic/>
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 bg-[#00A1FC]">
       <section className="bg-white flex flex-col items-center p-10 rounded-lg shadow-lg w-80 transition-all duration-300 text-black">
@@ -101,8 +129,17 @@ const Login = () => {
         </p>
       </section>
     </div>
+    <div className="mt-10 bg-black max-w-6xl mx-auto py-10 px-5">
+        <h2 className="text-3xl font-bold mb-5 text-center">Desenvolvedores</h2>
+        <div className="flex flex-wrap justify-center gap-6">
+          {developers.map((developer) => (
+            <DeveloperCard key={developer.name} {...developer} />
+          ))}
+        </div>
+      </div>
     <SvgFooter/>
-    </>
+    <div/>
+    </div>
   );
 };
 
