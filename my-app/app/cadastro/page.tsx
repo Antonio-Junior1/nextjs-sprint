@@ -2,6 +2,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import HeaderBasic from '../_components/header-basic';
+
+import { SvgFooter } from '../_components/svg-footer';
+import DeveloperCard from '../_components/DeveloperCard';
 
 // Definindo a interface TipoCadastro de acordo com a resposta da API
 interface TipoCadastro {
@@ -28,7 +32,6 @@ export default function Cadastro() {
         e.preventDefault();
         setLoading(true);
 
-        // Log dos dados que estão sendo enviados
         console.log("Dados do cadastro:", cadastro);
 
         try {
@@ -40,11 +43,10 @@ export default function Cadastro() {
                 body: JSON.stringify(cadastro),
             });
 
-            const responseText = await response.text(); // Obtenha a resposta como texto
-            console.log("Resposta da API:", responseText); // Log da resposta
+            const responseText = await response.text();
+            console.log("Resposta da API:", responseText);
 
             if (response.ok) {
-                const data = responseText ? JSON.parse(responseText) : {};
                 setCadastro({
                     usuario: "",
                     nome: "",
@@ -69,77 +71,108 @@ export default function Cadastro() {
         }
     };
 
+
+    const developers = [
+        {
+          name: 'Antonio Junior',
+          rm: '554518',
+          email: 'AntonioJunior@Gmail.com',
+          github: 'https://github.com/Antonio-Junior1',
+          instagram: 'https://www.instagram.com/jrz__7/',
+          image: '/images/Antonio.jpeg',
+        },
+        {
+          name: 'Carlos Eduardo',
+          rm: '555223',
+          email: 'CarlosEduardo@Gmail.com',
+          github: 'https://github.com/CarlosCampos84',
+          instagram: 'https://www.instagram.com/c4duzin_n/',
+          image: '/images/Cadu.jpeg',
+        },
+        {
+          name: 'Felipe Pizzinato',
+          rm: '555141',
+          email: 'FelipePizzinato@Gmail.com',
+          github: 'https://github.com/felipepizzinato',
+          instagram: 'https://www.instagram.com/_pizzinato/',
+          image: '/images/Felipe.jpeg',
+        },
+      ];
+
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-4">
-            <h2 className="text-3xl font-bold text-white mb-6">Cadastro</h2>
-            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md space-y-4">
-                {/* Campos do formulário */}
-                <input
-                    type="text"
-                    id="idNomeCompleto"
-                    name="nm_completo"
-                    placeholder="Nome Completo"
-                    value={cadastro.nome}
-                    onChange={(e) => setCadastro({ ...cadastro, nome: e.target.value })}
-                    required
-                    title="Informe seu nome completo."
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-                <input
-                    type="text"
-                    id="idNmUsu"
-                    name="nm_usuario"
-                    placeholder="Nome de Usuário"
-                    value={cadastro.usuario}
-                    onChange={(e) => setCadastro({ ...cadastro, usuario: e.target.value })}
-                    required
-                    title="Informe seu nome de usuário."
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-                <input
-                    type="email"
-                    id="idEmail"
-                    name="nm_email"
-                    placeholder="Email"
-                    value={cadastro.email}
-                    onChange={(e) => setCadastro({ ...cadastro, email: e.target.value })}
-                    required
-                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
-                    title="Informe um email válido, por exemplo: usuario@dominio.com."
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-                <input
-                    type="password"
-                    id="idSenha"
-                    name="nm_senha"
-                    placeholder="Senha"
-                    value={cadastro.senha}
-                    onChange={(e) => setCadastro({ ...cadastro, senha: e.target.value })}
-                    required
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-                <input
-                    type="text"
-                    id="idPlaca"
-                    name="nr_placa"
-                    placeholder="Digite sua placa (AAA1234 ou ABC1D23)"
-                    value={cadastro.placa}
-                    onChange={(e) => setCadastro({ ...cadastro, placa: e.target.value })}
-                    required
-                    pattern="^[A-Z]{3}\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$"
-                    title="Formato esperado: AAA1234 ou ABC1D23"
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-                <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition" disabled={loading}>
-                    {loading ? 'Cadastrando...' : 'Cadastrar'}
-                </button>
-                <p className="text-center">
-                    Já tem uma conta? <Link href="/login" className="text-blue-500 hover:underline">Faça login</Link>
+        <div className='bg-black'>
+        <HeaderBasic/>
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 bg-[#00A1FC]">
+            <section className="bg-white flex flex-col items-center p-10 rounded-lg shadow-lg w-80 transition-all duration-300 text-black">
+                <h2 className="text-2xl font-bold mb-5">Cadastro</h2>
+                <form onSubmit={handleSubmit} className="flex flex-col w-full space-y-3">
+                    <input
+                        type="text"
+                        placeholder="Nome Completo"
+                        value={cadastro.nome}
+                        onChange={(e) => setCadastro({ ...cadastro, nome: e.target.value })}
+                        required
+                        className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Nome de Usuário"
+                        value={cadastro.usuario}
+                        onChange={(e) => setCadastro({ ...cadastro, usuario: e.target.value })}
+                        required
+                        className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                        type="email"
+                        placeholder="E-mail"
+                        value={cadastro.email}
+                        onChange={(e) => setCadastro({ ...cadastro, email: e.target.value })}
+                        required
+                        className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Senha"
+                        value={cadastro.senha}
+                        onChange={(e) => setCadastro({ ...cadastro, senha: e.target.value })}
+                        required
+                        className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Digite sua placa (AAA1234 ou ABC1D23)"
+                        value={cadastro.placa}
+                        onChange={(e) => setCadastro({ ...cadastro, placa: e.target.value })}
+                        required
+                        pattern="^[A-Z]{3}\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$"
+                        title="Formato esperado: AAA1234 ou ABC1D23"
+                        className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                    <button
+                        type="submit"
+                        className="w-full p-2 bg-[#007bff] text-white rounded-md mt-3 hover:bg-blue-600 transition"
+                        disabled={loading}
+                    >
+                        {loading ? 'Cadastrando...' : 'Cadastrar'}
+                    </button>
+                </form>
+                <Link href="/login" className="w-full p-2 bg-[#00A1FC] text-white rounded-md mt-4 text-center hover:bg-blue-500 transition">
+                    Voltar ao Login
+                </Link>
+                <p className={`mt-4 text-sm ${mensagemCadastro.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
+                    {mensagemCadastro}
                 </p>
-            </form>
-            <p id="mensagemCadastro" className={`mt-4 ${mensagemCadastro.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
-                {mensagemCadastro}
-            </p>
+            </section>
+        </div>
+        <div className="mt-10 bg-black max-w-6xl mx-auto py-10 px-5">
+        <h2 className="text-3xl font-bold mb-5 text-center">Desenvolvedores</h2>
+        <div className="flex flex-wrap justify-center gap-6">
+          {developers.map((developer) => (
+            <DeveloperCard key={developer.name} {...developer} />
+          ))}
+        </div>
+      </div>
+        <SvgFooter/>
         </div>
     );
 }

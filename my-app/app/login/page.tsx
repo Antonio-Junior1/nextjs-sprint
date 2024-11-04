@@ -2,8 +2,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import HeaderBasic from '../_components/header-basic';
+import { SvgFooter } from '../_components/svg-footer';
 
-// Definindo uma interface para o tipo de usuário
 interface Usuario {
   usuario: string;
   senha: string;
@@ -19,7 +20,7 @@ const Login = () => {
   useEffect(() => {
     const user = sessionStorage.getItem("usuario");
     if (user) {
-      router.push("");
+      router.push("/");
     }
 
     const chamadaApi = async () => {
@@ -58,38 +59,50 @@ const Login = () => {
   };
 
   return (
-    <div className="wrapper">
-      <h2 className='login_h2'>Bem-vindo!</h2>
-      <form onSubmit={handleSubmit} className="input-area">
-        <input
-          type="text"
-          id="idNmUsu"
-          name="nm_usuario"
-          placeholder="Nome de usuário"
-          required
-          value={nomeUsuario}
-          onChange={(e) => setNomeUsuario(e.target.value)}
-          autoComplete="off"
-        />
+    <>
+    <HeaderBasic/>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 bg-[#00A1FC]">
+      <section className="bg-white flex flex-col items-center p-10 rounded-lg shadow-lg w-80 transition-all duration-300 text-black">
+        <h2 className="text-2xl font-bold mb-5">Bem-vindo!</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col w-full space-y-3">
+          <input
+            type="text"
+            id="idNmUsu"
+            name="nm_usuario"
+            placeholder="Nome de usuário"
+            required
+            value={nomeUsuario}
+            onChange={(e) => setNomeUsuario(e.target.value)}
+            className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+            autoComplete="off"
+          />
 
-        <input
-          type="password"
-          id="idSenha"
-          name="senha"
-          placeholder="Senha"
-          required
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          autoComplete="off"
-        />
+          <input
+            type="password"
+            id="idSenha"
+            name="senha"
+            placeholder="Senha"
+            required
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className="p-2 border rounded-md focus:outline-none focus:border-blue-500"
+            autoComplete="off"
+          />
 
-        <button type="submit" className="b_login">Entrar</button>
-        <p>
-          Não tem uma conta? <Link href="/cadastro" className="f_cadastro">Cadastre-se</Link>
+          <button type="submit" className="w-full p-2 bg-[#007bff] text-white rounded-md mt-3 hover:bg-blue-600 transition">
+            Entrar
+          </button>
+          <p className="mt-4 text-center">
+            Não tem uma conta? <Link href="/cadastro" className="text-blue-500 hover:underline">Cadastre-se</Link>
+          </p>
+        </form>
+        <p className={`mt-4 text-sm ${mensagem.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
+          {mensagem}
         </p>
-      </form>
-      <p id="mensagem" className={mensagem.includes('sucesso') ? 'sucesso' : 'erro'}>{mensagem}</p>
+      </section>
     </div>
+    <SvgFooter/>
+    </>
   );
 };
 

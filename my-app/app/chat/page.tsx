@@ -1,79 +1,100 @@
 "use client";
 
 import { useState } from 'react';
+import HeaderBasic from "../_components/header-basic";
+import { SvgFooter } from "../_components/svg-footer";
+import Script from "next/script";
+import MainChat from '../_components/Mainchat';
 
-export default function Chat() {
+export default function ChatHome() {
   const [sintoma, setSintoma] = useState('');
   const [previsao, setPrevisao] = useState('');
   const [erro, setErro] = useState('');
 
   const enviarSintoma = async () => {
-    // Verifica se o campo Sintoma está vazio
     if (!sintoma) {
       setErro('Por favor, insira um sintoma.');
       return;
     }
 
     try {
-      // Fazendo a requisição para o endpoint da API
       const response = await fetch('https://api-ia-3-xkjr.onrender.com/prever', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ Sintoma: sintoma }), // Corpo da requisição com o sintoma
+        body: JSON.stringify({ Sintoma: sintoma }),
       });
 
-      // Verifica se a resposta é ok (status 200-299)
       if (!response.ok) {
         throw new Error('Erro na requisição: ' + response.statusText);
       }
 
-      // Converte a resposta em JSON
       const data = await response.json();
-      console.log(data); // Para ver a resposta no console
-
-      // Define a previsão recebida da API
+      console.log(data);
       setPrevisao(data.previsao);
-      setErro(''); // Reseta a mensagem de erro
+      setErro('');
     } catch (error) {
-      console.error('Erro:', error); // Log de erro detalhado
-      if (error instanceof Error) {
-        // Define a mensagem de erro com detalhes
-        setErro(`Erro ao obter previsão. Detalhes: ${error.message}`);
-      } else {
-        setErro('Erro ao obter previsão. Verifique se o servidor está ativo.');
-      }
-      setPrevisao(''); // Reseta a previsão
+      console.error('Erro:', error);
+      setErro(error instanceof Error ? `Erro ao obter previsão. Detalhes: ${error.message}` : 'Erro ao obter previsão. Verifique se o servidor está ativo.');
+      setPrevisao('');
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Teste de IA para Previsão</h2>
-      <input
-        className='text-black'
-        type="text"
-        value={sintoma}
-        onChange={(e) => setSintoma(e.target.value)}
-        placeholder="Digite um sintoma"
-        style={{ padding: '8px', width: '80%' }}
-      />
-      <button onClick={enviarSintoma} style={{ marginLeft: '10px', padding: '8px 15px' }}>
-        Enviar
-      </button>
+    <div className="w-full min-h-screen flex flex-col bg-[#00A1FC]">
+      <HeaderBasic />
 
-      {previsao && (
-        <div style={{ marginTop: '20px' }}>
-          <h4>Previsão:</h4>
-          <p>{previsao}</p>
+      <MainChat/> 
+      <div className="flex items-center justify-center p-10 bg-white m-10 rounded-lg shadow-lg text-black">
+        <div className="w-full max-w-lg">
+          <h2 className="text-2xl font-bold mb-5">Diagnostico do seu problema </h2>
+          <input
+            className="text-black p-2 border rounded-md focus:outline-none focus:border-blue-500 w-full"
+            type="text"
+            value={sintoma}
+            onChange={(e) => setSintoma(e.target.value)}
+            placeholder="Digite um sintoma"
+          />
+          <button
+            onClick={enviarSintoma}
+            className="w-full p-2 bg-[#007bff] text-white rounded-md mt-3 hover:bg-blue-600 transition"
+          >
+            Enviar
+          </button>
+
+          {previsao && (
+            <div className="mt-4">
+              <h4 className="font-semibold">Previsão:</h4>
+              <p>{previsao}</p>
+            </div>
+          )}
+          {erro && (
+            <div className="mt-4 text-red-500">
+              <p>{erro}</p>
+            </div>
+          )}
         </div>
-      )}
-      {erro && (
-        <div style={{ color: 'red', marginTop: '20px' }}>
-          <p>{erro}</p>
-        </div>
-      )}
+      </div>
+         
+      <SvgFooter />
+
+      {/* Script do Watson Chat */}
+      <Script id="watson-chat" strategy="afterInteractive">
+        {`
+          window.watsonAssistantChatOptions = {
+            integrationID: "8afe2391-1b53-4800-857d-bc7a8820028f",
+            region: "us-south",
+            serviceInstanceID: "875f6872-0c58-4f4a-940d-ffabdca41c90",
+            onLoad: async (instance) => { await instance.render(); }
+          };
+          setTimeout(function(){
+            const t=document.createElement('script');
+            t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+            document.head.appendChild(t);
+          });
+        `}
+      </Script>
     </div>
   );
 }
