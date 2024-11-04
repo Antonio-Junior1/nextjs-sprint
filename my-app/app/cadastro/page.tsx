@@ -95,7 +95,7 @@ export default function Cadastro() {
           email: 'FelipePizzinato@Gmail.com',
           github: 'https://github.com/felipepizzinato',
           instagram: 'https://www.instagram.com/_pizzinato/',
-          image: '/iMAGES/Felipe.jpeg',
+          image: '/IMAGES/Felipe.jpeg',
         },
       ];
 
