@@ -1,71 +1,96 @@
 "use client";
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-import { useState } from 'react';
-import HeaderBasic from '../_components/header-basic';
-import Form from '../_components/Form';
-import DeveloperCard from '../_components/DeveloperCard';
+// Definindo uma interface para o tipo de usuário
+interface Usuario {
+  nm_usuario: string;
+  nm_senha: string;
+}
 
-export default function Page() {
-  const [isRegistering, setIsRegistering] = useState(false);
+const Login = () => {
+  const [mensagem, setMensagem] = useState('');
+  const [nomeUsuario, setNomeUsuario] = useState(''); // Corrigido para nome de usuário
+  const [senha, setSenha] = useState('');
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const router = useRouter();
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const user = sessionStorage.getItem("usuario");
+    if (user) {
+      router.push("/");
+    }
+
+    const chamadaApi = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/usuario');
+        if (!response.ok) {
+          throw new Error('Erro ao buscar usuários');
+        }
+        const data = await response.json();
+        setUsuarios(data);
+      } catch (error) {
+        console.error("Falha na listagem", error);
+      }
+    };
+
+    chamadaApi();
+  }, [router]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isRegistering) {
-      alert('Cadastro realizado com sucesso!');
+
+    const usuario = usuarios.find(user => user.nm_usuario === nomeUsuario && user.nm_senha === senha);
+
+    if (usuario) {
+      sessionStorage.setItem("usuario", JSON.stringify(usuario));
+      setMensagem("Login bem-sucedido!");
+      setTimeout(() => {
+        router.push("/"); 
+      }, 2000);
     } else {
-      alert('Login feito com sucesso!');
+      setMensagem("Nome de usuário ou senha inválidos.");
+      setTimeout(() => {
+        setMensagem('');
+      }, 3000);
     }
   };
 
-  const toggleRegisterForm = () => {
-    setIsRegistering(!isRegistering);
-  };
-
-  const developers = [
-    {
-      name: 'Antonio Junior',
-      rm: '554518',
-      email: 'AntonioJunior@Gmail.com',
-      github: 'https://github.com/Antonio-Junior1',
-      instagram: 'https://www.instagram.com/jrz__7/',
-      image: '/images/Antonio.jpeg',
-    },
-    {
-      name: 'Carlos Eduardo',
-      rm: '555223',
-      email: 'CarlosEduardo@Gmail.com',
-      github: 'https://github.com/CarlosCampos84',
-      instagram: 'https://www.instagram.com/c4duzin_n/',
-      image: '/images/Cadu.jpeg',
-    },
-    {
-      name: 'Felipe Pizzinato',
-      rm: '555141',
-      email: 'FelipePizzinato@Gmail.com',
-      github: 'https://github.com/felipepizzinato',
-      instagram: 'https://www.instagram.com/_pizzinato/',
-      image: '/images/Felipe.jpeg',
-    },
-  ];
-
   return (
-    <div className="flex flex-col items-center bg-black w-full min-h-screen">
-      <HeaderBasic />
-      <main className="bg-[#00A1FC] flex flex-col items-center justify-center w-full py-24 px-8 text-black">
-        <Form
-          isRegistering={isRegistering}
-          toggleRegisterForm={toggleRegisterForm}
-          handleFormSubmit={handleFormSubmit}
+    <div className="wrapper">
+      <h2 className='login_h2'>Bem-vindo!</h2>
+      <form onSubmit={handleSubmit} className="input-area">
+        <input
+          type="text"
+          id="idNmUsu"
+          name="nm_usuario"
+          placeholder="Nome de usuário"
+          required
+          value={nomeUsuario}
+          onChange={(e) => setNomeUsuario(e.target.value)}
+          autoComplete="off"
         />
-      </main>
-      <div className="mt-10 bg-black max-w-6xl mx-auto py-10 px-5">
-        <h2 className="text-3xl font-bold mb-5 text-center">Desenvolvedores</h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {developers.map((developer) => (
-            <DeveloperCard key={developer.name} {...developer} />
-          ))}
-        </div>
-      </div>
+
+        <input
+          type="password"
+          id="idSenha"
+          name="senha"
+          placeholder="Senha"
+          required
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          autoComplete="off"
+        />
+
+        <button type="submit" className="b_login">Entrar</button>
+        <p>
+          Não tem uma conta? <Link href="/cadastro" className="f_cadastro">Cadastre-se</Link>
+        </p>
+      </form>
+      <p id="mensagem" className={mensagem.includes('sucesso') ? 'sucesso' : 'erro'}>{mensagem}</p>
     </div>
   );
-}
+};
+
+export default Login;
