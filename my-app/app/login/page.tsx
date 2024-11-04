@@ -1,17 +1,17 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 // Definindo uma interface para o tipo de usuário
 interface Usuario {
-  nm_usuario: string;
-  nm_senha: string;
+  usuario: string;
+  senha: string;
 }
 
 const Login = () => {
   const [mensagem, setMensagem] = useState('');
-  const [nomeUsuario, setNomeUsuario] = useState(''); // Corrigido para nome de usuário
+  const [nomeUsuario, setNomeUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const router = useRouter();
@@ -19,7 +19,7 @@ const Login = () => {
   useEffect(() => {
     const user = sessionStorage.getItem("usuario");
     if (user) {
-      router.push("/");
+      router.push("");
     }
 
     const chamadaApi = async () => {
@@ -28,7 +28,7 @@ const Login = () => {
         if (!response.ok) {
           throw new Error('Erro ao buscar usuários');
         }
-        const data = await response.json();
+        const data: Usuario[] = await response.json();
         setUsuarios(data);
       } catch (error) {
         console.error("Falha na listagem", error);
@@ -41,13 +41,13 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const usuario = usuarios.find(user => user.nm_usuario === nomeUsuario && user.nm_senha === senha);
+    const usuarioEncontrado = usuarios.find(user => user.usuario === nomeUsuario);
 
-    if (usuario) {
-      sessionStorage.setItem("usuario", JSON.stringify(usuario));
+    if (usuarioEncontrado && usuarioEncontrado.senha === senha) {
+      sessionStorage.setItem("usuario", JSON.stringify(usuarioEncontrado));
       setMensagem("Login bem-sucedido!");
       setTimeout(() => {
-        router.push("/"); 
+        router.push("/");
       }, 2000);
     } else {
       setMensagem("Nome de usuário ou senha inválidos.");
